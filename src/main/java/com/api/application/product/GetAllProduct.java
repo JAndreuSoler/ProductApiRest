@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.api.domain.exceptions.EmptyProductListException;
 import com.api.domain.product.model.Product;
 import com.api.domain.product.repository.ProductRepository;
 
@@ -20,7 +21,9 @@ public class GetAllProduct {
 	
 	
 	public List<Product> getAllProduct(){
-		return productRepository.getAll();
+		List<Product> list =  productRepository.getAll();
+		if ( list.isEmpty() ) throw new EmptyProductListException();
+		return list;
 	}
 	
 	

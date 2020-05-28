@@ -18,12 +18,9 @@ public class PutProductController {
 	
 	@PutMapping("/product/{id}")
 	public ResponseEntity<?> putProduct(@RequestBody Product product, @PathVariable long id) {
-		ResponseEntity<?> response;
 		Product p = service.update(product, id);
 		
-		response = (p == null) ? ResponseEntity.notFound().build() : ResponseEntity.ok(p);
-		
-		return response;
+		return ResponseEntity.ok(p);
 	}
 
 }

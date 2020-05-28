@@ -18,12 +18,8 @@ public class GetAllProductController {
 	
 	@GetMapping("/product")
 	public ResponseEntity<?> getAllProduct(){
-		ResponseEntity<?> response;
 		List<Product> list = service.getAllProduct();
 		
-		response = (list.isEmpty()) ? ResponseEntity.notFound().build() 
-				: ResponseEntity.ok(list);
-		
-		return response;
+		return ResponseEntity.ok(list);
 	}
 }

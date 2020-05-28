@@ -3,6 +3,7 @@ package com.api.application.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.api.domain.exceptions.ProductNotFoundException;
 import com.api.domain.product.model.Product;
 import com.api.domain.product.repository.ProductRepository;
 
@@ -19,8 +20,7 @@ public class UpdateProduct {
 	public Product update(Product product, long id) {
 		Product p = productRepository.getProduct(id);
 		
-		if( p == null )
-			return null;
+		if( p == null ) throw new ProductNotFoundException(id);
 		
 		p.setName(product.getName());
 		p.setDescription(product.getDescription());
