@@ -1,6 +1,8 @@
 package com.api.controllers.product.post;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,9 +17,9 @@ public class PostProductController {
 	SaveProduct service;
 	
 	@PostMapping("product")
-	public Product postProduct(@RequestBody Product product) {
+	public ResponseEntity<?> postProduct(@RequestBody Product product) {
 		service.save(product);
-		return product;
+		return ResponseEntity.status(HttpStatus.CREATED).body(product);
 	}
 
 }

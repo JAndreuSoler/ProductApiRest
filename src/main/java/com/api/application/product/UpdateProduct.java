@@ -16,8 +16,16 @@ public class UpdateProduct {
 		this.productRepository = productRepository;
 	}
 	
-	public void update(Product product) {
-		productRepository.insertProduct(product);
+	public Product update(Product product, long id) {
+		Product p = productRepository.getProduct(id);
+		
+		if( p == null )
+			return null;
+		
+		p.setName(product.getName());
+		p.setDescription(product.getDescription());
+		
+		return productRepository.insertProduct(p);
 	}
 	
 }

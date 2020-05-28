@@ -1,5 +1,7 @@
 package com.api.application.product;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ public class SaveProduct {
 	}
 	
 	public void save(Product product) {
+		Date date = new Date(System.currentTimeMillis());
+		product.setDate(date);
 		productRepository.insertProduct(product);
 	}
 }

@@ -32,8 +32,8 @@ public class H2JpaProductRepository implements ProductRepository {
 	}
 
 	@Override
-	public void insertProduct(Product product) {
-		repository.save(product);
+	public Product insertProduct(Product product) {
+		return repository.save(product);
 	}
 
 }
